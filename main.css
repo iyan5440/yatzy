@@ -1,0 +1,29 @@
+body {
+    
+}
+
+.keyboard {
+    height: 50vh;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.secondLast {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.space {
+    width: 50%;
+    height: 2rem;
+    background-color: gray;
+}
