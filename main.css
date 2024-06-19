@@ -1,5 +1,5 @@
 body {
-    
+    width: 100%;
 }
 
 
@@ -22,13 +22,12 @@ body {
 
 .word {
     font-size: xx-large;
-    justify-content: space-between;
 }
 
 
 .keyboard {
     height: 50vh;
-    width: 70vw;
+    width: 70%; 
     margin-left: 15%;
     display: flex;
     flex-direction: column;
@@ -48,16 +47,34 @@ body {
 }
 
 .key {
-    padding: 10px;
+    padding: 2.5vw;
     
     border: 1px solid black;
 }
 
-.space {
-    width: 50%;
-    height: 2rem;
+.key:hover {
     background-color: gray;
-    
 }
 
+.key:active {
+    background-color: white;
+}
+
+
+@media only screen and (max-width: 799px) {
+    body {
+        width: 100%;
+    }
+
+    .key {
+        padding: 2.2vw;
+        border: 1px solid black;
+    }
+}
+
+@media (min-width: 800px) {
+    body {
+        width: 100%;
+    }
+}
 

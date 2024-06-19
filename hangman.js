@@ -6,7 +6,7 @@ window.onload = function() {
 
     const chosen = wordList[Math.floor(Math.random() * wordList.length)];
 
-    console.log("" + chosen);
+    //console.log("" + chosen);
 
     const keyboardKeys = document.querySelectorAll('.key');
 
