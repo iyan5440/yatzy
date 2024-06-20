@@ -41,14 +41,14 @@ window.onload = function() {
     function checkLetter(userKey, chosen, unknownLetters) {
         userChar = userKey.innerHTML;
         userKey.style.visibility = 'hidden';
-        
+
         if(chosen.indexOf(userChar) > -1) {
             findAndUpdate(userChar, chosen, unknownLetters);
             var check=true;
         
             for(let i = 0; i< chosen.length; i++) {
-                console.log(words[i].innerHTML);
-                if (words[i].innerHTML=='_'){
+                console.log(unknownLetters[i].innerHTML);
+                if (unknownLetters[i].innerHTML=='_'){
                     check=false;
                     break;
                 }
