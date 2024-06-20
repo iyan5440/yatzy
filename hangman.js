@@ -40,11 +40,9 @@ window.onload = function() {
 
     function checkLetter(userKey, chosen, unknownLetters) {
         userChar = userKey.innerHTML;
-        
+        userKey.style.visibility = 'hidden';
         if(chosen.indexOf(userChar) > -1) {
             findAndUpdate(userChar, chosen, unknownLetters);
-            userKey.style.visibility = 'hidden';
-
             var check=true;
         
             for(let i = 0; i< chosen.length; i++) {
