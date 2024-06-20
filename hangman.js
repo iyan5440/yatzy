@@ -1,11 +1,15 @@
-const IDs = ["https://pbs.twimg.com/media/GQdun7FXwAABl16?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk8QrXwAADygT?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk6kfW0AEV_5U?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk6kmWgAA07ea?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk6kgXAAAJny8?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk6kgW4AAulJG?format=png&name=900x900",
-    "https://pbs.twimg.com/media/GQdk8Q5WYAAsB7f?format=png&name=900x900"];
 
+
+
+const IDs = ["https://pbs.twimg.com/media/GQdun7FXwAABl16?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk8QrXwAADygT?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk6kfW0AEV_5U?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk6kmWgAA07ea?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk6kgXAAAJny8?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk6kgW4AAulJG?format=png&name=900x900",
+        "https://pbs.twimg.com/media/GQdk8Q5WYAAsB7f?format=png&name=900x900"];
+
+    
 
 window.onload = function() {
 
@@ -13,7 +17,6 @@ window.onload = function() {
 
     const stickman = document.querySelector("#stickman");
 
-window.onload = function() {
     var unknownString = document.getElementById("unknownString");
 
     const wordList = ['AZURE','DIRNDI','LYMPH','BUFFOON','PLAIN','DUPLEX','ZILCH','EMBEZZLE','SPHINX','ESPIONAGE','EUOUAE'];
@@ -52,20 +55,18 @@ window.onload = function() {
                 }
             }
             if (check){
-                var newUrl = window.location.href.substring(8,window.location.href.length-9)
                 alert("You won!");
-                location.pathname = newUrl+"page.html";
+                location.replace("page.html");
             }
 
         }
         else {
             fails++;
             stickman.src = IDs[fails];
-            console.log("Fails", fails);
+            //console.log("Fails", fails);
             if (fails == 7){
-                var newUrl = window.location.href.substring(8,window.location.href.length-9)
                 alert("You ran out of moves :( The word was: " + chosen);
-                //location.pathname = newUrl+"page.html";
+                location.replace("page.html");
             }
         }
     }
@@ -78,5 +79,3 @@ window.onload = function() {
         }
     }    
 }
-
-      
