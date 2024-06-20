@@ -11,6 +11,8 @@ window.onload = function() {
 
     let fails = 0;
 
+    const stickman = document.querySelector("#stickman");
+
     var unknownString = document.getElementById("unknownString");
 
     const wordList = ['AZURE','DIRNDI','LYMPH','BUFFOON','PLAIN','DUPLEX','ZILCH','EMBEZZLE','SPHINX','ESPIONAGE','EUOUAE'];
@@ -38,17 +40,32 @@ window.onload = function() {
 
 function checkLetter(userKey, chosen, words) {
     userChar = userKey.innerHTML
+    userKey.style.visibility = 'hidden';
     if(chosen.indexOf(userChar) > -1) {
         findAndUpdate(userChar, chosen, words);
-        userKey.style.visibility = 'hidden';
+        var check=true;
+        
+        console.log(words[0])
+        for(let i = 0; i< words.length; i++) {
+            if (unknownString[i]=='_'){
+                check=false;
+                break;
+            }
+        }
+        if (check){
+            var newUrl = window.location.href.substring(8,window.location.href.length-9)
+            alert("You won!");
+            location.pathname = newUrl+"page.html";
+        }
     }
     else {
-        //damage hangman
         fails++;
-        stickman.removeElement("src");
-        stickman.src=IDs[fails]
-        if (fails==6){
-            lose();
+        stickman.src=IDs[fails];
+        console.log(fails);
+        if (fails==7){
+            var newUrl = window.location.href.substring(8,window.location.href.length-9)
+            alert("You ran out of moves :( The word was: " + chosen);
+            location.pathname = newUrl+"page.html";
         }
     }
 }
@@ -60,19 +77,3 @@ function findAndUpdate(userChar, chosen, words) {
         }
     }
 }          
-
-
-//Javascript
-
-let fails = 0;
-const stickman = main.querySelector("stickman");
-function tryLetter(){
-    if(fail){
-        fails++;
-        stickman.removeElement("src");
-        stickman.src=IDs[fails]
-        if (fails==6){
-            lose();
-        }
-    }
-}
