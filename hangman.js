@@ -13,6 +13,7 @@ window.onload = function() {
 
     const stickman = document.querySelector("#stickman");
 
+window.onload = function() {
     var unknownString = document.getElementById("unknownString");
 
     const wordList = ['AZURE','DIRNDI','LYMPH','BUFFOON','PLAIN','DUPLEX','ZILCH','EMBEZZLE','SPHINX','ESPIONAGE','EUOUAE'];
@@ -40,6 +41,21 @@ window.onload = function() {
         if(chosen.indexOf(userChar) > -1) {
             findAndUpdate(userChar, chosen, unknownLetters);
             userKey.style.visibility = 'hidden';
+
+            var check=true;
+        
+            for(let i = 0; i< chosen.length; i++) {
+                console.log(words[i].innerHTML);
+                if (words[i].innerHTML=='_'){
+                    check=false;
+                    break;
+                }
+            }
+            if (check){
+                var newUrl = window.location.href.substring(8,window.location.href.length-9)
+                alert("You won!");
+                location.pathname = newUrl+"page.html";
+            }
 
         }
         else {
