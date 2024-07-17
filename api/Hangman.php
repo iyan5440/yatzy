@@ -88,5 +88,9 @@ class Hangman {
         return $this->fails == 7;
     }
 
+    public function getCurrentScore() {
+        return $this->fails;
+    }
+
     
 }

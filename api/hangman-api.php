@@ -12,6 +12,11 @@ if (isset($_GET['action'])) {
     switch ($action) {
         case 'initialize':
             
+            $currWordState = $game->getCurrentWordList();
+            $currImg = $game->getCurrentHangman();
+
+            echo json_encode(['initialized' => [$currWordState,$currImg]]);
+
             break;
         case 'decidingCheckLetter':
         
