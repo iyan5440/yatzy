@@ -55,7 +55,7 @@ window.onload = function() {
             }
             if (check){
                 alert("You won!");
-                location.replace("page.html");
+                location.replace("index.html");
             }
 
         }
@@ -65,7 +65,7 @@ window.onload = function() {
             //console.log("Fails", fails);
             if (fails == 7){
                 alert("You ran out of moves :( The word was: " + chosen);
-                location.replace("page.html");
+                location.replace("index.html");
             }
         }
     }
