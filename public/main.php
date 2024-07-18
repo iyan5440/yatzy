@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+require_once './_config.php';
+//require_once '../app/models/Hangman-api.php';
+require_once './Hangman-api.php';
+
+use hang\HangmanGame;
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

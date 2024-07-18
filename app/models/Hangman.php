@@ -1,5 +1,5 @@
 <?php
-namespace hangman;
+namespace hang;
 
 class Hangman {
     
@@ -31,22 +31,30 @@ class Hangman {
 
 
     public function initializeGame() {
-        $this->chosen = $this->wordList[rand(0, count($this-> wordList))];
-        $this->currentWordState = [];
-
+        $this->chosen = $this->wordList[rand(0, count($this-> wordList) - 1)];
+        $this->currentWordState = array_fill(0, strlen($this->chosen), '_');
+/*
         for($i = 0; $i < strlen($this->chosen); $i++ ) {
-            $this->currentWordState[$i] = "";
-        }
+            $this->currentWordState[$i] = "_";
+        }*/
+
+        ///var_dump($this->chosen);
+        //var_dump($this->currentWordState);
+
     }
 
     public function checkLetter($userKey) {
-        if(stripos($this->chosen,$userKey) > -1) {
+        //var_dump($this->getChosenWord());
+        //var_dump($this->getCurrentWordList());
+        if(stripos($this->chosen,$userKey) != false) {
             $this->findAndUpdate($userKey);
         }
         else {
-            $this->fails++; 
+            $this->fails++;
         }
-        $this->handleResult();
+
+
+        return $this->handleResult();
     }
 
     public function findAndUpdate($userKey) {
@@ -55,13 +63,14 @@ class Hangman {
                 $this->currentWordState[$i] = $userKey;
             }
         }
+
     }
 
     public function handleResult() {
         if($this->fails == 7) {
             return 1;
         }
-        elseif($this->chosen === join($this->currentWordState)) {
+        else if($this->getChosenWord() === implode('', $this->getCurrentWordList())) {
             return 0;
         }
         else {

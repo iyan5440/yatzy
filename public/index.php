@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-require_once '_config.php';
-
-use hangman\Hangman;
+require_once './_config.php';
 
 if (!isset($_SESSION['leaderboard'])) {
     //$_SESSION['game'] = new YatzyGame();
@@ -27,8 +25,7 @@ if (!isset($_SESSION['leaderboard'])) {
 <body>
     <h1>Hangman</h1>
     <div>
-        <a href="main.html"><button>Start</button></a>
+        <a href="main.php"><button>Start</button></a>
     </div>
 </body>
-<script src="hangman.js"></script>
 </html>
