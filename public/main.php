@@ -1,11 +1,18 @@
 <?php
+require_once './_config.php';
 session_start();
 
-require_once './_config.php';
-//require_once '../app/models/Hangman-api.php';
-require_once './Hangman-api.php';
 
-use hang\HangmanGame;
+//require_once '../app/models/Hangman-api.php';
+//require_once './Hangman-api.php';
+
+//use hang\HangmanGame;
+use hang\Hangman;
+
+//header("Content-Type: application/json");
+
+$game = new Hangman();
+
 
 ?>
 

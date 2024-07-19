@@ -11,6 +11,8 @@ window.onload = function() {
 
     var promptMsg;
 
+    var chose;
+
     initialize();
 
 
@@ -23,7 +25,7 @@ window.onload = function() {
     keyboardKeys.forEach(keyboardKey => {
         keyboardKey.addEventListener('click', () => {
             //console.log("Check: " + keyboardKey.innerHTML);
-            checkLetter(keyboardKey).then( resu => {
+            checkLetter(keyboardKey.innerText).then( resu => {
                 update(resu);
             })
             
@@ -51,9 +53,11 @@ function initialize() {
                 const res = JSON.parse(xmlhttp.responseText);
 
                 currentWordState = res.initialized.wordState;
-                console.log(currentWordState);
-                console.log(typeof(currentWordState));
+                //console.log(currentWordState);
+                //console.log(typeof(currentWordState));
                 stickman.src = res.initialized.hangman;
+                chose = res.initialized.chos;
+                //console.log(chose);
                 updateunknownString(currentWordState);
 
                 
@@ -83,6 +87,7 @@ function checkLetter(KKey) {
             }
         };
         const encodedKKey = encodeURIComponent(KKey);
+        console.log(KKey);
         xmlhttp.open("GET",  `./Hangman-api.php?action=decidingCheckLetter&KKey=${encodedKKey}`, true);
         xmlhttp.send();
     });
@@ -98,17 +103,6 @@ function update(resu) {
     console.log(result);
     xmlhttp.open("GET", `./Hangman-api.php?action=update&resu=${result}`, true);
     xmlhttp.send();
-
-    //console.log(resu);
-    /*
-    if (resu == '0' || resu == '1' || resu == '2') {
-        xmlhttp.open("GET", "./Hangman-api.php?action=update&resu=${result}", true);
-    }
-
-    else {
-        xmlhttp.open("GET", "./Hangman-api.php?action=404", true);
-    }*/
-    
     
 
     xmlhttp.onreadystatechange = function() {
@@ -120,9 +114,10 @@ function update(resu) {
                     console.log("t5");
                     if (resu == 0 || resu == 1) {
                         currentWordState = res.State01.wordState;
+                        updateunknownString(currentWordState);
                         promptMsg = res.State01.promptMsg;
                         alert(promptMsg);
-                        location.replace("page.html");
+                        location.replace("index.php");
                     }
                     else if (resu == 2) {
                         currentWordState = res.State2.wordState;

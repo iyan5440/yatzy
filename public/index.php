@@ -3,11 +3,23 @@ session_start();
 
 require_once './_config.php';
 
+if (isset($_SESSION['game'])) {
+    //$_SESSION['game'] = new YatzyGame();
+    //$game = $_SESSION['game'];
+
+    unset($_SESSION['game']);
+}
+
 if (!isset($_SESSION['leaderboard'])) {
     //$_SESSION['game'] = new YatzyGame();
     //$game = $_SESSION['game'];
+
     $_SESSION['leaderboard'] = [];
 }
+
+
+
+
 
 
 ?>

@@ -44,9 +44,11 @@ class Hangman {
     }
 
     public function checkLetter($userKey) {
-        //var_dump($this->getChosenWord());
-        //var_dump($this->getCurrentWordList());
-        if(stripos($this->chosen,$userKey) != false) {
+        //var_dump($userKey);
+        //var_dump($this->chosen);
+        //var_dump(stripos($this->chosen,$userKey));
+        if(stripos($this->chosen,$userKey) > -1) {
+            //print("you passed");
             $this->findAndUpdate($userKey);
         }
         else {
@@ -59,6 +61,8 @@ class Hangman {
 
     public function findAndUpdate($userKey) {
         for($i = 0; $i < strlen($this->chosen); $i++ ) {
+            //var_dump($userKey);
+            //var_dump($this->chosen[$i]);
             if($this->chosen[$i] === $userKey) {
                 $this->currentWordState[$i] = $userKey;
             }
