@@ -26,7 +26,7 @@ window.onload = function() {
         keyboardKey.addEventListener('click', () => {
             //console.log("Check: " + keyboardKey.innerHTML);
             checkLetter(keyboardKey.innerText).then( resu => {
-                update(resu);
+                update(resu, keyboardKey);
             })
             
             //get win, lose or update
@@ -95,7 +95,7 @@ function checkLetter(KKey) {
 
 }
 
-function update(resu) {
+function update(resu, keyboardKey) {
 
     const xmlhttp = new XMLHttpRequest();
     const result = encodeURIComponent(resu);
@@ -123,6 +123,13 @@ function update(resu) {
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
+                    }
+
+                    else if (resu == 3) {
+                        currentWordState = res.State2.wordState;
+                        stickman.src = res.State2.hangman;
+                        updateunknownString(currentWordState);
+                        keyboardKey.style.visibility = 'hidden';
                     }
                 
                     else {

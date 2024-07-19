@@ -53,10 +53,11 @@ class Hangman {
         }
         else {
             $this->fails++;
+            return $this->handleResult(true);
         }
 
 
-        return $this->handleResult();
+        return $this->handleResult(false);
     }
 
     public function findAndUpdate($userKey) {
@@ -70,12 +71,15 @@ class Hangman {
 
     }
 
-    public function handleResult() {
+    public function handleResult($check) {
         if($this->fails == 7) {
             return 1;
         }
         else if($this->getChosenWord() === implode('', $this->getCurrentWordList())) {
             return 0;
+        }
+        else if($check) {
+            return 3;
         }
         else {
             return 2;

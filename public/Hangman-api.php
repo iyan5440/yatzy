@@ -88,6 +88,16 @@ if (isset($_GET['action'])) {
                     ]]);
             }
 
+            elseif($resu == 3) {
+                $currWordState = $game->getCurrentWordList();
+                $currImg = $game->getCurrentHangman();
+                echo json_encode(['State2' => [
+                    'wordState' => $currWordState,
+                    'hangman' => $currImg,
+                    'failCheck' => true
+                    ]]);
+            }
+
             break;
         case 'startPlayerProfile':
         
