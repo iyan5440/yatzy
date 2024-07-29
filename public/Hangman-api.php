@@ -99,14 +99,22 @@ if (isset($_GET['action'])) {
             }
 
             break;
-        case 'startPlayerProfile':
-        
+        case 'sendUserName':
+            //&UserName
+
+            if (isset($_POST['userName'])) {
+                $userName = $_POST['userName'];
+                $_SESSION['currentUser'] = $userName;
+            }
+
             break;
         case 'storePlayerProfile':
         
             break;
-        case 'leaderboard':
-        
+        case 'getLeaderboard':
+            $leaderboard = $_SESSION['leaderboard'];
+
+            echo json_encode(['leaderboard' =>  $leaderboard]);
             break;
 
         default:

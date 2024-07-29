@@ -3,10 +3,11 @@ body {
     
 }
 
-h1 {
+.items {
     margin-left: 45%;
 }
 
-div {
+
+.start {
     margin-left: 47.5%;
 }
