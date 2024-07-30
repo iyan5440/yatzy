@@ -123,6 +123,7 @@ function update(resu, keyboardKey) {
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
+                        keyboardKey.style.visibility = 'hidden';
                     }
 
                     else if (resu == 3) {

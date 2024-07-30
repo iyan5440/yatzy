@@ -106,7 +106,7 @@ class Hangman {
     }
 
     public function getCurrentScore() {
-        return $this->fails;
+        return (7 - $this->fails) * strlen($this->getChosenWord()) * 1000;
     }
 
     

@@ -9,6 +9,13 @@ if (isset($_SESSION['game'])) {
     unset($_SESSION['game']);
 }
 
+if (isset($_SESSION['currentUser'])) {
+    //$_SESSION['game'] = new YatzyGame();
+    //$game = $_SESSION['game'];
+
+    unset($_SESSION['currentUser']);
+}
+
 if (!isset($_SESSION['leaderboard'])) {
     //$_SESSION['game'] = new YatzyGame();
     //$game = $_SESSION['game'];
@@ -43,46 +50,6 @@ if (!isset($_SESSION['leaderboard'])) {
                         <tr>
                             <th>Name</th>
                             <th>Score</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
                         </tr>
         </table>
 
