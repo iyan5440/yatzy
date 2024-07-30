@@ -1,6 +1,7 @@
 <?php
 require_once './_config.php';
 require_once "../app/models/HangmanGame.php";
+require_once '../includes/db_connection.php';
 session_start();
 
 
