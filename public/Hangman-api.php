@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
                 $score = $game->getCurrentScore();
                 $_SESSION['currentUser'][1] = $score;
 
-                array_push($_SESSION['leaderboard'], $_SESSION['currentUser']);
+                /*array_push($_SESSION['leaderboard'], $_SESSION['currentUser']);
                 usort($_SESSION['leaderboard'], 'compareScores');
 
                 if(count($_SESSION['leaderboard']) >= 10) {
@@ -84,7 +84,41 @@ if (isset($_GET['action'])) {
                     while(count($_SESSION['leaderboard']) > 10) {
                         array_pop($_SESSION['leaderboard']);
                     }
+                }*/
+
+                try {
+
+                    $pdo->beginTransaction();
+
+                    $query = 'INSERT INTO "LeaderboardSchema"."LeaderboardTable" (player_name, score) VALUES (:player_name, :score)';
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute([
+                        'player_name' => $_SESSION['currentUser'][0],
+                        'score' => $_SESSION['currentUser'][1]
+                    ]);
+
+                    $query = 'SELECT COUNT(*) FROM "LeaderboardSchema"."LeaderboardTable"';
+                    $stmt = $pdo->query($query);
+                    $recordCount = $stmt->fetchColumn();
+
+                    if ($recordCount > 10) {
+                        $query = 'DELETE FROM "LeaderboardSchema"."LeaderboardTable" WHERE player_name NOT IN (
+                                    SELECT player_name FROM "LeaderboardSchema"."LeaderboardTable" ORDER BY score DESC LIMIT 10
+                                )';
+                        $pdo->exec($query);
+                    }
+
+                    $pdo->commit();
+
+                } catch (PDOException $e) {
+                    // Rollback in case of error
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                    }
+                    echo "Error: " . $e->getMessage();
                 }
+
+                
 
                 //send end state
                 $currWordState = $game->getCurrentWordList();
@@ -137,10 +171,46 @@ if (isset($_GET['action'])) {
 
             break;
         case 'getLeaderboard':
+            $query = 'SELECT player_name, score FROM "LeaderboardSchema"."LeaderboardTable" ORDER BY score DESC LIMIT 10';
+            $stmt = $pdo->query($query);
+            $_SESSION['leaderboard'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $leaderboard = $_SESSION['leaderboard'];
+
+            /*foreach ($leaderboard as $entry) {
+                var_dump($entry);
+            }*/
 
             echo json_encode(['leaderboard' =>  $leaderboard]);
             break;
+
+        case 'deleteUserFromLeaderboard':
+
+                if (isset($_GET['playerName'])) {
+                    //var_dump("teeheeF");
+                    //error_log("Username not set in session.");
+                    $playerName = $_GET['playerName'];
+                    //$_SESSION['currentUser'] = [$playerName, 0];
+                }
+
+
+                try {
+
+                    $pdo->beginTransaction();
+
+                    $query = 'DELETE FROM "LeaderboardSchema"."LeaderboardTable" WHERE "Name" = :player_name AND "Score" = :score';
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute(['player_name' => $playerName, 'score' => $playerScore]);
+
+                    $pdo->commit();
+            
+                } catch (PDOException $e) {
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                    }
+                    echo json_encode(['error' => $e->getMessage()]);
+                }
+    
+                break;
 
         default:
             // Invalid action
@@ -154,21 +224,4 @@ if (isset($_GET['action'])) {
 function compareScores($a, $b) {
     return $b[1] - $a[1]; 
 }
-
-
-
-//post person to leaderboard
-    //post username
-    //stored in [currentPerson] = [userName,""];
-
-//post score to leaderboard
-    //store in  [currentPerson] = [userName,score];
-    //store in _Session leaderboard
-    //check if leaderboard <= 10
-        //add person
-        //sort
-    //if not <=10
-        //check last location [9] and replace
-
-
 

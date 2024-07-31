@@ -26,7 +26,13 @@
         }
     }
 
-    function sendUserName(userName) {
+    const leaderboardUsers = document.querySelectorAll('luser');
+
+    //const unknownLetters = unknownString.children; //unknownLetters
+
+    function deleteUserFromLeaderboard(rowId, playerName) {
+        document.getElementById(rowId).remove();
+
         const xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
@@ -34,15 +40,22 @@
                 if (xmlhttp.status == 200) {
                     const res = JSON.parse(xmlhttp.responseText);
                     console.log(res.messaged);
+                    getLeaderboard();
                 }
             }
         };
 
-        const encodedUserName = encodeURIComponent(userName);
-        xmlhttp.open("POST", `./Hangman-api.php?action=sendUserName&userName=${encodedUserName}`, true);
+        const encodedPlayerName = encodeURIComponent(playerName);
+        xmlhttp.open("POST", `./Hangman-api.php?action=deleteUserFromLeaderboard&playerName=${encodedPlayerName}`, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send();
     }
+
+    function clearLeaderboard() {
+
+    }
+
+
 
     //have a get request that adds information from server to leaderboard
 
@@ -67,13 +80,17 @@
                         const scoreCell = document.createElement('td');
                         scoreCell.innerText = curRow.score;
 
+                        const delCell = document.createElement('td');
+                        const delButton = document.createElement('button');
+                        delCell.innerText = 'X';
+                        deleteButton.onClick(deleteUserFromLeaderboard(newRow.id, curRow.player_name));
+
                         newRow.appendChild(nameCell);
                         newRow.appendChild(scoreCell);
 
                         leaderboardHtml.appendChild(newRow);
                         
                     }
-                    
                     
                 }
             }
