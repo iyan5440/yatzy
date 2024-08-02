@@ -7,11 +7,11 @@ session_start();
 //require_once './Hangman-api.php';
 
 //use hang\HangmanGame;
-use hang\Hangman;
+//use hang\Hangman;
 
 //header("Content-Type: application/json");
 
-$game = new Hangman();
+//$game = new Hangman();
 
 
 ?>

@@ -71,6 +71,21 @@ if (isset($_GET['action'])) {
 
 
              if($resu == 0 || $resu == 1) {
+                //updateLeaderboard
+                $score = $game->getCurrentScore();
+                $_SESSION['currentUser'][1] = $score;
+
+                array_push($_SESSION['leaderboard'], $_SESSION['currentUser']);
+                usort($_SESSION['leaderboard'], 'compareScores');
+
+                if(count($_SESSION['leaderboard']) >= 10) {
+
+                    while(count($_SESSION['leaderboard']) > 10) {
+                        array_pop($_SESSION['leaderboard']);
+                    }
+                }
+
+                //send end state
                 $currWordState = $game->getCurrentWordList();
                 $promptMsg = "You won!";
                 echo json_encode(['State01' => [
@@ -99,14 +114,31 @@ if (isset($_GET['action'])) {
             }
 
             break;
-        case 'startPlayerProfile':
-        
+        case 'sendUserName':
+            //&UserName
+
+            //var_dump("ASDFSDFSDF");
+            //error_log("TEST.");
+            //var_dump("POST data: " . print_r($_POST, true));
+
+            if (isset($_GET['userName'])) {
+                //var_dump("teeheeF");
+                //error_log("Username not set in session.");
+                $userName = $_GET['userName'];
+                $_SESSION['currentUser'] = [$userName, 0];
+            }
+
+            //var_dump("Yes");
+
+
+
+            echo json_encode(['messaged' => $_SESSION['currentUser']]);
+
             break;
-        case 'storePlayerProfile':
-        
-            break;
-        case 'leaderboard':
-        
+        case 'getLeaderboard':
+            $leaderboard = $_SESSION['leaderboard'];
+
+            echo json_encode(['leaderboard' =>  $leaderboard]);
             break;
 
         default:
@@ -116,6 +148,12 @@ if (isset($_GET['action'])) {
             break;
     }
 }
+
+
+function compareScores($a, $b) {
+    return $b[1] - $a[1]; 
+}
+
 
 
 //post person to leaderboard
@@ -130,6 +168,3 @@ if (isset($_GET['action'])) {
         //sort
     //if not <=10
         //check last location [9] and replace
-
-
-

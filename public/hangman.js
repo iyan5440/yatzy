@@ -15,9 +15,6 @@ window.onload = function() {
 
     initialize();
 
-
-    
-
     const keyboardKeys = document.querySelectorAll('.key');
 
     //const unknownLetters = unknownString.children; //unknownLetters
@@ -69,13 +66,14 @@ function initialize() {
     xmlhttp.send();
 }
 
+
 function checkLetter(KKey) {
     return new Promise((resolve) => {
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                 if (xmlhttp.status == 200) {
-                    console.log(xmlhttp.responseText);
+                    //console.log(xmlhttp.responseText);
                     const res = JSON.parse(xmlhttp.responseText);
                     //console.log("t4");
 
@@ -87,12 +85,16 @@ function checkLetter(KKey) {
             }
         };
         const encodedKKey = encodeURIComponent(KKey);
-        console.log(KKey);
+        //console.log(KKey);
         xmlhttp.open("GET",  `./Hangman-api.php?action=decidingCheckLetter&KKey=${encodedKKey}`, true);
         xmlhttp.send();
     });
     
 
+}
+
+async function sleep(secs) {
+    return new Promise((resolve) => setTimeout(resolve, secs * 1000));
 }
 
 function update(resu, keyboardKey) {
@@ -105,7 +107,7 @@ function update(resu, keyboardKey) {
     xmlhttp.send();
     
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = async function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
                 try {
@@ -115,6 +117,7 @@ function update(resu, keyboardKey) {
                     if (resu == 0 || resu == 1) {
                         currentWordState = res.State01.wordState;
                         updateunknownString(currentWordState);
+                        await sleep(0.25);
                         promptMsg = res.State01.promptMsg;
                         alert(promptMsg);
                         location.replace("index.php");
@@ -123,6 +126,7 @@ function update(resu, keyboardKey) {
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
+                        keyboardKey.style.visibility = 'hidden';
                     }
 
                     else if (resu == 3) {

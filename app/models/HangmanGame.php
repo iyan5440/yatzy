@@ -31,6 +31,10 @@ class hangmanGame {
         return $this->HangmanPlay->getChosenWord();
     }
 
+    public function getCurrentScore() {
+        return $this->HangmanPlay->getCurrentScore();
+    }
+
     public function getObj() {
         return new Hangman();
     }
