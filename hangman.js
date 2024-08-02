@@ -38,12 +38,17 @@ window.onload = function() {
         })
     });
 
-    function checkLetter(userKey, chosen, unknownLetters) {
+    async function sleep(secs) {
+        return new Promise((resolve) => setTimeout(resolve, secs * 1000));
+    }
+
+    async function checkLetter(userKey, chosen, unknownLetters) {
         userChar = userKey.innerHTML;
         userKey.style.visibility = 'hidden';
 
         if(chosen.indexOf(userChar) > -1) {
             findAndUpdate(userChar, chosen, unknownLetters);
+            await sleep(0.25);
             var check=true;
         
             for(let i = 0; i< chosen.length; i++) {
@@ -55,17 +60,16 @@ window.onload = function() {
             }
             if (check){
                 alert("You won!");
-                location.replace("page.html");
+                location.replace("index.html");
             }
 
         }
         else {
             fails++;
             stickman.src = IDs[fails];
-            //console.log("Fails", fails);
             if (fails == 7){
                 alert("You ran out of moves :( The word was: " + chosen);
-                location.replace("page.html");
+                location.replace("index.html");
             }
         }
     }
@@ -76,5 +80,7 @@ window.onload = function() {
                 unknownLetters[i].innerHTML = userChar;
             }
         }
-    }    
+    }
+    
+
 }
