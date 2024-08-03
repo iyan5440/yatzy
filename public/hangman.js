@@ -95,6 +95,10 @@ function checkLetter(KKey) {
 
 }
 
+async function sleep(secs) {
+    return new Promise((resolve) => setTimeout(resolve, secs * 1000));
+}
+
 function update(resu, keyboardKey) {
 
     const xmlhttp = new XMLHttpRequest();
@@ -105,7 +109,7 @@ function update(resu, keyboardKey) {
     xmlhttp.send();
     
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = async function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
             if (xmlhttp.status == 200) {
                 try {
@@ -115,22 +119,27 @@ function update(resu, keyboardKey) {
                     if (resu == 0 || resu == 1) {
                         currentWordState = res.State01.wordState;
                         updateunknownString(currentWordState);
+                        await sleep(0.25);
                         promptMsg = res.State01.promptMsg;
                         alert(promptMsg);
                         location.replace("index.php");
                     }
                     else if (resu == 2) {
+                        keyboardKey.style.backgroundColor = "rgb(26, 99, 32)";
+                        keyboardKey.style.pointerEvents = "none";
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
-                        keyboardKey.style.visibility = 'hidden';
+                        //keyboardKey.style.visibility = 'hidden';
                     }
 
                     else if (resu == 3) {
+                        keyboardKey.style.backgroundColor = "rgb(131, 25, 25)";
+                        keyboardKey.style.pointerEvents = "none";
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
-                        keyboardKey.style.visibility = 'hidden';
+                        //keyboardKey.style.visibility = 'hidden';
                     }
                 
                     else {

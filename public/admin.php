@@ -38,14 +38,15 @@ if (!isset($_SESSION['leaderboard'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
-    <link  type="text/css" rel="stylesheet" href="styles.css">
+    <link  type="text/css" rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <h1 class="items">Hangman</h1>
-    <div>
-
+    <div class="start">
+        <h1>Hangman</h1>
+        <button id="start-button" onclick="backToHome()">Back To Home</button>
     </div>
     <div class="items">
+        <h2>Leaderboard</h2>
         <table id="leaderboard">
                         <tr>
                             <th>Name</th>
@@ -53,13 +54,7 @@ if (!isset($_SESSION['leaderboard'])) {
                             <th>Delete?</th>
                         </tr>
         </table>
-
-        <label>Enter Player Name:</label>
-        <input type="text" id="user-input">
-    </div>
-    <div class="start">
-        <button id="start-button" onclick="verifyStartGameState()">Start</button>
     </div>
 </body>
-<script src="index.js"></script>
+<script src="admin.js"></script>
 </html>

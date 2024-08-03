@@ -182,7 +182,34 @@ if (isset($_GET['action'])) {
 
             echo json_encode(['leaderboard' =>  $leaderboard]);
             break;
+        case 'checkIfAdmin':
 
+            if ($_GET['action'] == 'checkIfAdmin') {
+                $potentialAdminUser = $_GET['potUser'];
+                $potentialAdminPass = $_GET['potPass'];
+            
+                // Perform the admin check logic here
+                // Example:
+                //var_dump($potentialAdminUser);
+                //var_dump($potentialAdminPass);
+
+            
+                if($potentialAdminUser === "dbAdmin" && $potentialAdminPass === "qwerpoiu"){
+                    echo json_encode(['adminStatus' =>  true, 'adminRedirect' => "admin.php"]);
+
+                }
+                else {
+                    echo json_encode(['adminStatus' =>  false]);
+                }
+            }
+
+
+
+
+
+
+
+            break;
         case 'deleteUserFromLeaderboard':
 
                 if (isset($_GET['playerName'])) {
@@ -191,15 +218,26 @@ if (isset($_GET['action'])) {
                     $playerName = $_GET['playerName'];
                     //$_SESSION['currentUser'] = [$playerName, 0];
                 }
+                
 
+                if (isset($_GET['playerScore'])) {
+                    //var_dump("teeheeF");
+                    //error_log("Username not set in session.");
+                    $playerScore = $_GET['playerScore'];
+                    
+                    //$_SESSION['currentUser'] = [$playerName, 0];
+                }
+
+                //var_dump($playerName);
+                //var_dump($playerScore);
 
                 try {
 
                     $pdo->beginTransaction();
 
-                    $query = 'DELETE FROM "LeaderboardSchema"."LeaderboardTable" WHERE "Name" = :player_name AND "Score" = :score';
+                    $query = 'DELETE FROM "LeaderboardSchema"."LeaderboardTable" WHERE "player_name" = :playerName AND "score" = :playerScore';
                     $stmt = $pdo->prepare($query);
-                    $stmt->execute(['player_name' => $playerName, 'score' => $playerScore]);
+                    $stmt->execute(['playerName' => $playerName, 'playerScore' => $playerScore]);
 
                     $pdo->commit();
             
@@ -209,6 +247,8 @@ if (isset($_GET['action'])) {
                     }
                     echo json_encode(['error' => $e->getMessage()]);
                 }
+
+                //echo json_encode(['error' => $e->getMessage()]);
     
                 break;
 

@@ -8,14 +8,39 @@
 
 
 
-    //const userName = document.getElementById("user-input");
+    //const userName = document.getElementById("user-input");   
+    var userName, potUser, potPass;
+    
     const start = document.getElementById("start-button");
     const userInput = document.getElementById("user-input");
+    const potUserInput = document.getElementById("potentialAdminUser");
+    const potPassInput = document.getElementById("potentialAdminPass");
+
     var leaderboardHtml = document.getElementById("leaderboard");
+    var adminDiv = document.getElementById("admin-div");
+    var msg = document.getElementById("msg");
+  
+
+    const keyboardKeys = document.querySelectorAll('.key');
+
+    //const unknownLetters = unknownString.children; //unknownLetters
+
+    keyboardKeys.forEach(keyboardKey => {
+        keyboardKey.addEventListener('click', () => {
+            //console.log("Check: " + keyboardKey.innerHTML);
+            checkLetter(keyboardKey.innerText).then( resu => {
+                update(resu, keyboardKey);
+            })
+            
+            //get win, lose or update
+        })
+    });
+
+    
 
 
     function verifyStartGameState() {
-        const userName = userInput.value.trim();
+        userName = userInput.value.trim();
         console.log(userName);
 
         //console.log(userName == "");
@@ -44,6 +69,34 @@
         xmlhttp.send();
     }
 
+    function checkIfAdmin(potUser, potPass) {
+        potUser = potUserInput.value;
+        potPass = potPassInput.value;
+
+        const xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    const res = JSON.parse(xmlhttp.responseText);
+                    if( res.adminStatus == false) {
+                        msg.innerText = "ERROR INCORRECT USER AND OR PASSWORD";
+                    } else {
+                        msg.innerText = "";
+                        location.replace(res.adminRedirect);
+                    }
+                    
+                    
+                }
+            }
+        };
+        const encodedPotUser = encodeURIComponent(potUser);
+        const encodedPotPass = encodeURIComponent(potPass);
+        xmlhttp.open("GET", `./Hangman-api.php?action=checkIfAdmin&potUser=${encodedPotUser}&potPass=${encodedPotPass}`, true);
+        xmlhttp.send();
+
+    }
+
     //have a get request that adds information from server to leaderboard
 
     function getLeaderboard() {
@@ -59,7 +112,6 @@
                     for (let i = 0; i < leaderboardRes.length; i++) {
                         const curRow = leaderboardRes[i];
                         const newRow = document.createElement('tr');
-                        newRow.setAttribute('id','luser');
 
                         const nameCell = document.createElement('td');
                         nameCell.innerText = curRow.player_name;

@@ -9,53 +9,47 @@
 
 
     //const userName = document.getElementById("user-input");
+    var userName;
     const start = document.getElementById("start-button");
     const userInput = document.getElementById("user-input");
     var leaderboardHtml = document.getElementById("leaderboard");
 
 
-    function verifyStartGameState() {
-        const userName = userInput.value.trim();
-        console.log(userName);
-
-        //console.log(userName == "");
-        if (userName !== "") {
-            sendUserName(userName);
-            location.replace("main.php");
-
-        }
+    function backToHome() {
+        location.replace("index.php");
     }
-
-    const leaderboardUsers = document.querySelectorAll('luser');
 
     //const unknownLetters = unknownString.children; //unknownLetters
 
-    function deleteUserFromLeaderboard(rowId, playerName) {
-        document.getElementById(rowId).remove();
+    function deleteUserFromLeaderboard(playerName, score) {
+
 
         const xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                 if (xmlhttp.status == 200) {
-                    const res = JSON.parse(xmlhttp.responseText);
-                    console.log(res.messaged);
+                    //const res = JSON.parse(xmlhttp.responseText);
+                    //console.log(res.messaged);
+                    //const row = document.getElementById(rowId);
+                    //row.remove();
+
                     getLeaderboard();
                 }
             }
         };
 
         const encodedPlayerName = encodeURIComponent(playerName);
-        xmlhttp.open("POST", `./Hangman-api.php?action=deleteUserFromLeaderboard&playerName=${encodedPlayerName}`, true);
+        const encodedPlayerScore = encodeURIComponent(score);
+        xmlhttp.open("POST", `./Hangman-api.php?action=deleteUserFromLeaderboard&playerName=${encodedPlayerName}&playerScore=${encodedPlayerScore}`, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send();
     }
 
     function clearLeaderboard() {
-
+        const userRows = leaderboardHtml.querySelectorAll('tr:not(:first-child)');
+        userRows.forEach(userRow => userRow.remove());
     }
-
-
 
     //have a get request that adds information from server to leaderboard
 
@@ -67,12 +61,16 @@
                 if (xmlhttp.status == 200) {
                     const res = JSON.parse(xmlhttp.responseText);
 
-                    leaderboardRes = res.leaderboard; 
+                    const leaderboardRes = res.leaderboard; 
+
+                    clearLeaderboard();
                     // update leaderboard table with leaderboardRes content
                     for (let i = 0; i < leaderboardRes.length; i++) {
                         const curRow = leaderboardRes[i];
                         const newRow = document.createElement('tr');
-                        newRow.setAttribute('id','luser');
+
+                        const rowId = `user-${i}`;
+                        newRow.setAttribute('id', rowId);
 
                         const nameCell = document.createElement('td');
                         nameCell.innerText = curRow.player_name;
@@ -82,11 +80,14 @@
 
                         const delCell = document.createElement('td');
                         const delButton = document.createElement('button');
-                        delCell.innerText = 'X';
-                        deleteButton.onClick(deleteUserFromLeaderboard(newRow.id, curRow.player_name));
+                        delButton.innerText = 'X';
+                        //delButton.setAttribute("onClick", deleteUserFromLeaderboard(newRow.id, curRow.player_name));
+                        delButton.addEventListener('click', () => deleteUserFromLeaderboard(curRow.player_name, curRow.score));
+                        delCell.appendChild(delButton);
 
                         newRow.appendChild(nameCell);
                         newRow.appendChild(scoreCell);
+                        newRow.appendChild(delCell);
 
                         leaderboardHtml.appendChild(newRow);
                         
