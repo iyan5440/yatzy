@@ -71,8 +71,13 @@ body {
     justify-content: space-evenly;
 }
 
+.middle {
+    width: 90%;
+    margin: 0 auto;
+}
+
 .bottom {
-    width: 85%;
+    width: 70%;
     margin: 0 auto;
 }
 
