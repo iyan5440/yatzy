@@ -1,6 +1,7 @@
 body {
     width: 100%;
     background-color: rgb(185, 185, 185);
+    min-width: 500px;
 }
 
 .key:disabled {
@@ -15,6 +16,8 @@ body {
     width: 99%;
     margin-bottom: 10vh;
     /*border: 1px solid black;*/
+    user-select: none;
+    min-width: 500px;
 }
 
 
@@ -63,6 +66,7 @@ body {
     border-radius: 10px;
     box-shadow: 5px 10px rgb(10, 10, 10);
     min-height: 20vw;
+    min-width: 500px;
 }
 
 .row {
