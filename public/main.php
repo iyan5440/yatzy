@@ -31,8 +31,9 @@ session_start();
         <div class="unknownString" id="unknownString">
 
         </div>
-        <img src="https://pbs.twimg.com/media/GQdun7FXwAABl16?format=png&name=900x900" alt="No stickman at all" id="stickman">
-        
+        <div class="image" id = "image">
+            <img src="https://pbs.twimg.com/media/GQdun7FXwAABl16?format=png&name=900x900" alt="No stickman at all" id="stickman">
+        </div>
     </div>
     <div class="keyboard">
         <div class="row">
@@ -58,7 +59,7 @@ session_start();
             <div class="key">K</div>
             <div class="key">L</div>
         </div>
-        <div class="row secondLast">
+        <div class="row bottom">
             <div class="key">Z</div>
             <div class="key">X</div>
             <div class="key">C</div>

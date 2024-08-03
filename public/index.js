@@ -1,21 +1,16 @@
-//click event for start button
-    //post
-    //UserName from input
 
     onload = () => {
         getLeaderboard();
     }
 
-
-
-    //const userName = document.getElementById("user-input");
+    var userName;
     const start = document.getElementById("start-button");
     const userInput = document.getElementById("user-input");
     var leaderboardHtml = document.getElementById("leaderboard");
 
 
     function verifyStartGameState() {
-        const userName = userInput.value.trim();
+        userName = userInput.value.trim();
         console.log(userName);
 
         //console.log(userName == "");
