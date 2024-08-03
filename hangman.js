@@ -44,9 +44,9 @@ window.onload = function() {
 
     async function checkLetter(userKey, chosen, unknownLetters) {
         userChar = userKey.innerHTML;
-        userKey.style.visibility = 'hidden';
 
         if(chosen.indexOf(userChar) > -1) {
+            userKey.style.backgroundColor = "rgb(26, 99, 32)"
             findAndUpdate(userChar, chosen, unknownLetters);
             await sleep(0.25);
             var check=true;
@@ -65,13 +65,21 @@ window.onload = function() {
 
         }
         else {
+            userKey.style.backgroundColor = "rgb(131, 25, 25)"
             fails++;
             stickman.src = IDs[fails];
             if (fails == 7){
                 alert("You ran out of moves :( The word was: " + chosen);
                 location.replace("index.html");
             }
+            await sleep(0.25);
         }
+        for (let i=1; i>0;i-=0.05){
+            userKey.style.opacity = i;
+        }
+        userKey.disable;
+        /*userKey.style.visibility = 'hidden';
+        userKey.style.backgroundColor = "white"*/
     }
             
     function findAndUpdate(userChar, chosen, unknownLetters) {
