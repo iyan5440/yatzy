@@ -1,4 +1,4 @@
-<?php
+<p?php
 require_once './_config.php';
 session_start();
 
@@ -41,8 +41,20 @@ if (!isset($_SESSION['leaderboard'])) {
     <link  type="text/css" rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div class="popout login" id="popout" onclick="togglePopout()">Login</div>
+    <div class="start login" id="admin-div" hidden>
+        <h1>Admin Login</h1>
+        <p onclick="togglePopout()">Hide</p>
+        <label>Username:</label>
+        <input type="text" id="potentialAdminUser">
+        <label>Password:</label>
+        <input type="text" id="potentialAdminPass">
+        <button id="start-button" onclick="checkIfAdmin()">Login</button>
+        <label id="msg"></label>
+    </div>
     <div class="start">
         <h1>Hangman</h1>
+        <p>The simple word game</p>
         <label>Enter Player Name:</label>
         <input type="text" id="user-input">
         <button id="start-button" onclick="verifyStartGameState()">Start</button>
@@ -56,15 +68,7 @@ if (!isset($_SESSION['leaderboard'])) {
                         </tr>
         </table>
     </div>
-    <div class="start" id="admin-div">
-        <h1>Admin Login</h1>
-        <label>Username:</label>
-        <input type="text" id="potentialAdminUser">
-        <label>Password:</label>
-        <input type="text" id="potentialAdminPass">
-        <button id="start-button" onclick="checkIfAdmin()">Login</button>
-        <label id="msg"></label>
-    </div>
+    
 </body>
 <script src="index.js"></script>
 </html>
