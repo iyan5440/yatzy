@@ -123,17 +123,17 @@ function update(resu, keyboardKey) {
                         location.replace("index.php");
                     }
                     else if (resu == 2) {
+                        keyboardKey.style.backgroundColor = "rgb(26, 99, 32)"
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
-                        keyboardKey.style.visibility = 'hidden';
                     }
 
                     else if (resu == 3) {
+                        keyboardKey.style.backgroundColor = "rgb(131, 25, 25)"
                         currentWordState = res.State2.wordState;
                         stickman.src = res.State2.hangman;
                         updateunknownString(currentWordState);
-                        keyboardKey.style.visibility = 'hidden';
                     }
                 
                     else {

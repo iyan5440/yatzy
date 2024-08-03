@@ -41,23 +41,20 @@ if (!isset($_SESSION['leaderboard'])) {
     <link  type="text/css" rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 class="items">Hangman</h1>
-    <div>
-
+    <div class="start">
+        <h1>Hangman</h1>
+        <label>Enter Player Name:</label>
+        <input type="text" id="user-input">
+        <button id="start-button" onclick="verifyStartGameState()">Start</button>
     </div>
     <div class="items">
+        <h2>Leaderboard</h2>
         <table id="leaderboard">
                         <tr>
                             <th>Name</th>
                             <th>Score</th>
                         </tr>
         </table>
-
-        <label>Enter Player Name:</label>
-        <input type="text" id="user-input">
-    </div>
-    <div class="start">
-        <button id="start-button" onclick="verifyStartGameState()">Start</button>
     </div>
 </body>
 <script src="index.js"></script>

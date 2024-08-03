@@ -121,10 +121,10 @@ if (isset($_GET['action'])) {
             //error_log("TEST.");
             //var_dump("POST data: " . print_r($_POST, true));
 
-            if (isset($_GET['userName'])) {
+            if (isset($_POST['userName'])) {
                 //var_dump("teeheeF");
                 //error_log("Username not set in session.");
-                $userName = $_GET['userName'];
+                $userName = $_POST['userName'];
                 $_SESSION['currentUser'] = [$userName, 0];
             }
 

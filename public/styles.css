@@ -1,12 +1,30 @@
 body {
-    margin-top: 35vh;
-    
+    margin-top: 25vh;
+    background-color: rgb(185, 185, 185);
 }
 
 h1 {
-    margin-left: 45%;
+    text-align: center;
 }
 
 div {
-    margin-left: 47.5%;
+    padding: 30px;
+    padding-top: 15px;
+    text-align: center;
+    margin:auto;
+    border: 5px solid black;
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.start{
+    width: 15%;
+    box-shadow: 4px 8px rgb(10, 10, 10);
+}
+
+.items {
+    margin-top: 5vh;
+    width: 10%;
+    box-shadow: 2px 4px rgb(10, 10, 10);
 }

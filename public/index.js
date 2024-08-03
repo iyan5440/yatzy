@@ -8,14 +8,14 @@
 
 
 
-    //const userName = document.getElementById("user-input");
+    var userName;
     const start = document.getElementById("start-button");
     const userInput = document.getElementById("user-input");
     var leaderboardHtml = document.getElementById("leaderboard");
 
 
     function verifyStartGameState() {
-        const userName = userInput.value.trim();
+        userName = userInput.value.trim();
         console.log(userName);
 
         //console.log(userName == "");
@@ -28,6 +28,7 @@
 
     function sendUserName(userName) {
         const xmlhttp = new XMLHttpRequest();
+        console.log("nat1");
 
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
@@ -37,11 +38,12 @@
                 }
             }
         };
-
+        console.log("nat2");
         const encodedUserName = encodeURIComponent(userName);
         xmlhttp.open("POST", `./Hangman-api.php?action=sendUserName&userName=${encodedUserName}`, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send();
+        console.log("nat3");
     }
 
     //have a get request that adds information from server to leaderboard
