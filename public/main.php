@@ -48,7 +48,7 @@ session_start();
             <div class="key">O</div>
             <div class="key">P</div>
         </div>
-        <div class="row">
+        <div class="row middle">
             <div class="key">A</div>
             <div class="key">S</div>
             <div class="key">D</div>

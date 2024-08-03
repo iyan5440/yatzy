@@ -3,6 +3,9 @@
         getLeaderboard();
     }
 
+
+
+    //const userName = document.getElementById("user-input");
     var userName;
     const start = document.getElementById("start-button");
     const userInput = document.getElementById("user-input");
@@ -32,7 +35,6 @@
                 }
             }
         };
-
         const encodedUserName = encodeURIComponent(userName);
         xmlhttp.open("POST", `./Hangman-api.php?action=sendUserName&userName=${encodedUserName}`, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
