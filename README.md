@@ -1,4 +1,4 @@
-Students: Natalie Colman (300177579) and  Iyanuloluwa Aketepe (Student number)
+Students: Natalie Colman (300177579) and  Iyanuloluwa Aketepe (300170701)
 This is our hangman game, coded in PHP, HTML, JS and CSS.
 
 When you launch the game, you'll see something like this.
