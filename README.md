@@ -29,24 +29,31 @@ If you win with a high enough score, your score will be added to the leaderboard
 
 ### Admin Login:
 
-![Administrator’s start on the same page as user index.php](Assets/image.png)
+Administrator’s start on the same page as user index.php
+![Image of Homepage with Admin login Section](Assets/image.png)
 
 
 
-![Administrator will type their credentials into the “Admin Login” section.](Assets/image.png)
-
-
-
-
-
-A GET request will be sent to verify the administrator's credentials to the server via hangman-api.php. ![The end result for correct credentials will be a redirect based on a url sent by the server.](Assets/image.png)
+Administrator will type their credentials into the “Admin Login” section.
+![Image of credentials inputed into the Admin login Section](Assets/image.png)
 
 
 
 
 
-![This section allows administrators to delete users on the server.](Assets/image.png)
+A GET request will be sent to verify the administrator's credentials to the server via hangman-api.php. The end result for correct credentials will be a redirect based on a url sent by the server. 
+
+![Image of Admin page redirect](Assets/image.png)
 
 
 
-![It also allows administrators to return to the home page, either to play the game themselves or to review the changes to the leaderboard end users will see.](Assets/image.png)
+
+
+This section allows administrators to delete users on the server.
+
+![Resulting Image after Administrator deletes users](Assets/image.png)
+
+
+It also allows administrators to return to the home page, either to play the game themselves or to review the changes to the leaderboard end users will see.
+
+![Image of returning to the homepage with updated Leaderboard](Assets/image.png)
