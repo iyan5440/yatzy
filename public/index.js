@@ -18,12 +18,14 @@
 
     var leaderboardHtml = document.getElementById("leaderboard");
     var adminDiv = document.getElementById("admin-div");
+    var popout = document.getElementById("popout");
     var msg = document.getElementById("msg");
   
 
     const keyboardKeys = document.querySelectorAll('.key');
 
     //const unknownLetters = unknownString.children; //unknownLetters
+
 
     keyboardKeys.forEach(keyboardKey => {
         keyboardKey.addEventListener('click', () => {
@@ -35,9 +37,12 @@
             //get win, lose or update
         })
     });
-
     
 
+    function togglePopout() {
+        adminDiv.hidden = !adminDiv.hidden;
+        popout.hidden = !popout.hidden;
+    }
 
     function verifyStartGameState() {
         userName = userInput.value.trim();

@@ -11,12 +11,11 @@ div {
     padding: 30px;
     padding-top: 15px;
     text-align: center;
-    margin:auto;
     border: 5px solid black;
     border-radius: 25px;
     background-color: rgb(255, 255, 255);
-    
 }
+
 
 .start{
     width: 15%;
