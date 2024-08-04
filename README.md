@@ -1,6 +1,36 @@
 Students: Natalie Colman (300177579) and  Iyanuloluwa Aketepe (300170701)
-This is our hangman game, coded in PHP, HTML, JS and CSS.
 
+### Developing the app
+This is our hangman game, coded in PHP, HTML, JS and CSS, as well as SQL usage for the database. In order to get started, first we had to install PHP and Postgres.
+
+Inside Postgres' PGAdmin, we created a Leaderboard Schema. Inside that, we created a Leaderboard Table, which holds both the player's name and score. The table holds the ten top-scoring entries.
+
+Additionally, we added the php.ini file to the php folder.
+
+### Admin Login:
+
+Administrator’s start on the same page as user index.php
+
+
+
+Administrator will type their credentials into the “Admin Login” section. 
+
+
+
+
+
+A GET request will be sent to verify the administrator's credentials to the server via hangman-api.php. The end result for correct credentials will be a redirect based on a url sent by the server.
+
+
+
+
+
+This section allows administrators to delete users on the server.
+
+
+
+It also allows administrators to return to the home page, either to play the game themselves or to review the changes to the leaderboard end users will see.
+### Playing the game as a user
 When you launch the game, you'll see something like this.
 ![Image of the launch screen of the game, featuring a leaderboard composed of many silly-named entries as well as many Natalies.](Assets/image.png)
 

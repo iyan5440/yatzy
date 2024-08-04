@@ -161,6 +161,7 @@ if (isset($_GET['action'])) {
                 //error_log("Username not set in session.");
                 $userName = $_GET['userName'];
                 $_SESSION['currentUser'] = [$userName, 0];
+                var_dump($username);
             }
 
             //var_dump("Yes");
