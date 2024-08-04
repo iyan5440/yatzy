@@ -7,29 +7,6 @@ Inside Postgres' PGAdmin, we created a Leaderboard Schema. Inside that, we creat
 
 Additionally, we added the php.ini file to the php folder.
 
-### Admin Login:
-
-Administrator’s start on the same page as user index.php
-
-
-
-Administrator will type their credentials into the “Admin Login” section. 
-
-
-
-
-
-A GET request will be sent to verify the administrator's credentials to the server via hangman-api.php. The end result for correct credentials will be a redirect based on a url sent by the server.
-
-
-
-
-
-This section allows administrators to delete users on the server.
-
-
-
-It also allows administrators to return to the home page, either to play the game themselves or to review the changes to the leaderboard end users will see.
 ### Playing the game as a user
 When you launch the game, you'll see something like this.
 ![Image of the launch screen of the game, featuring a leaderboard composed of many silly-named entries as well as many Natalies.](Assets/image.png)
@@ -48,3 +25,28 @@ A correct guess! "I" was the second letter of the word.
 Let's keep guessing until we either win or lose.![The word was "Zilch." A, E, and P are all highlighted in red on the keyboard. A pop-up with the message saying "You won!" is on the screen.](Assets/image-5.png)
 
 If you win with a high enough score, your score will be added to the leaderboard.![An updated leaderboard. This game's score, 20000, has been added to the leaderboard in 5th place, with the username NATALIE.](Assets/image-6.png)
+
+
+### Admin Login:
+
+[Administrator’s start on the same page as user index.php](Assets/image.png)
+
+
+
+[Administrator will type their credentials into the “Admin Login” section.](Assets/image.png)
+
+
+
+
+
+A GET request will be sent to verify the administrator's credentials to the server via hangman-api.php. [The end result for correct credentials will be a redirect based on a url sent by the server.](Assets/image.png)
+
+
+
+
+
+[This section allows administrators to delete users on the server.](Assets/image.png)
+
+
+
+[It also allows administrators to return to the home page, either to play the game themselves or to review the changes to the leaderboard end users will see.](Assets/image.png)
