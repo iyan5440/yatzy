@@ -3,7 +3,7 @@ Students: Natalie Colman (300177579) and  Iyanuloluwa Aketepe (300170701)
 ### Developing the app
 This is our hangman game, coded in PHP, HTML, JS and CSS, as well as SQL usage for the database. In order to get started, first we had to install PHP and Postgres.
 
-Inside Postgres' PGAdmin, we created a Leaderboard Schema. Inside that, we created a Leaderboard Table, which holds both the player's name and score.
+Inside Postgres' PGAdmin, we created a Leaderboard Schema. Inside that, we created a Leaderboard Table, which holds both the player's name and score. The table holds the ten top-scoring entries.
 
 Additionally, we added the php.ini file to the php folder.
 
