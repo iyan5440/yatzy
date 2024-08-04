@@ -25,8 +25,11 @@ div {
 }
 
 .items {
-    margin-top: 5vh;
     width: 10%;
     min-width: 200px;
     box-shadow: 2px 4px rgb(10, 10, 10);
+}
+
+.spacer {
+    margin-top: 5vh;
 }

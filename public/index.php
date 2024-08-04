@@ -47,7 +47,7 @@ if (!isset($_SESSION['leaderboard'])) {
         <input type="text" id="user-input">
         <button id="start-button" onclick="verifyStartGameState()">Start</button>
     </div>
-    <div class="items">
+    <div class="items spacer">
         <h2>Leaderboard</h2>
         <table id="leaderboard">
                         <tr>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['leaderboard'])) {
                         </tr>
         </table>
     </div>
-    <div class="start" id="admin-div">
+    <div class="start spacer" id="admin-div">
         <h1>Admin Login</h1>
         <label>Username:</label>
         <input type="text" id="potentialAdminUser">

@@ -31,6 +31,7 @@ class Hangman {
 
 
     public function initializeGame() {
+        $this->fails = 0;
         $this->chosen = $this->wordList[rand(0, count($this-> wordList) - 1)];
         $this->currentWordState = array_fill(0, strlen($this->chosen), '_');
 /*
